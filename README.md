@@ -1,5 +1,7 @@
 # AI Log Analyzer
 
+[![Tests](https://github.com/karamjitsingh0607/ai-log-analyzer/actions/workflows/tests.yml/badge.svg)](https://github.com/karamjitsingh0607/ai-log-analyzer/actions/workflows/tests.yml)
+
 An AI-powered log analysis backend built with **Python, FastAPI, Ollama, and Pydantic**.
 
 The application analyzes application logs using a combination of deterministic rule-based analysis and local LLM-powered analysis. It identifies errors, detects the affected system component, calculates severity, and generates AI-assisted root-cause analysis and troubleshooting recommendations.
