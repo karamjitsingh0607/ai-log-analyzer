@@ -1,3 +1,4 @@
+import logging
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -31,7 +32,7 @@ def test_analyze_valid_log(monkeypatch):
         2026-08-13 11:00:01 INFO Application started
         2026-08-13 11:00:03 INFO Connecting to database
         2026-08-13 11:00:04 ERROR Database connection failed
-        2026-08-13 11:00:05 ERROR Connection refused: 10.10.20.15:5432  
+        2026-08-13 11:00:05 ERROR Connection refused: 10.10.20.15:5432
     """
 
     response = client.post(
@@ -130,3 +131,45 @@ def test_ai_analyzer_unavailable(monkeypatch):
     assert response.json()["detail"] == (
         "AI analyzer is currently unavailable"
     )
+
+def test_log_analysis_logging(monkeypatch, caplog):
+    def mock_ai_analysis(parsed_logs):
+        return {
+            "problem_summary": "Database connection failed",
+            "root_cause": "Connection refused",
+            "severity": "HIGH",
+            "confidence": 0.9,
+            "possible_causes": [
+                "Database server unavailable"
+            ],
+            "recommended_actions": [
+                "Check database connectivity"
+            ],
+            "next_steps": [
+                "Check database server status"
+            ]
+        }
+    monkeypatch.setattr(
+        "app.api.logs.analyze_with_ai",
+        mock_ai_analysis
+    )
+    log_content = """\
+        2026-08-13 11:00:01 INFO Application started
+        2026-08-13 11:00:03 INFO Connecting to database
+        2026-08-13 11:00:04 ERROR Database connection failed
+    """
+    with caplog.at_level(logging.INFO):
+        response = client.post(
+            "/logs/analyze",
+            files={
+                "file": (
+                    "sample.log",
+                    log_content,
+                    "text/plain"
+                )
+            }
+        )
+    assert response.status_code == 200
+    assert "Log analysis started" in caplog.text
+    assert "Logs parsed successfully" in caplog.text
+    assert "Log analysis completed" in caplog.text
