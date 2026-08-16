@@ -1,0 +1,3 @@
+{
+    "detail": "Only .log files are supported"
+}

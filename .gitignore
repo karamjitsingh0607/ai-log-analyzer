@@ -1,0 +1,42 @@
+# Environment variables
+.env
+
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+coverage.xml
+*.cover
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# Allow sanitized project test logs
+!logs/
+!logs/*.log
+
+# Build / Distribution
+build/
+dist/
+*.egg-info/
+
+# Local files
+*.sqlite3

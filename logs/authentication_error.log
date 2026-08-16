@@ -1,0 +1,5 @@
+2026-08-13 11:00:01 INFO Application started
+2026-08-13 11:00:03 INFO User authentication started
+2026-08-13 11:00:04 ERROR Invalid credentials
+2026-08-13 11:00:05 ERROR Login failed
+2026-08-13 11:00:06 WARNING Authentication retry

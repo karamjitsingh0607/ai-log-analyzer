@@ -1,0 +1,7 @@
+2026-08-09 10:15:01 INFO Application started
+2026-08-09 10:15:05 INFO Connecting to database
+2026-08-09 10:15:06 ERROR Database connection failed
+2026-08-09 10:15:06 ERROR Connection refused: 10.10.20.15:5432
+2026-08-09 10:15:10 WARNING Retrying database connection
+2026-08-09 10:15:15 ERROR Database connection failed again
+2026-08-09 10:16:00 INFO Application shutting down

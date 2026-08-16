@@ -1,0 +1,6 @@
+2026-08-13 10:15:01 INFO Application started
+2026-08-13 10:15:05 INFO Connecting to API server
+2026-08-13 10:15:06 ERROR Connection timeout
+2026-08-13 10:15:07 ERROR Host unreachable
+2026-08-13 10:15:10 WARNING Retrying connection
+2026-08-13 10:15:15 ERROR Connection timeout
